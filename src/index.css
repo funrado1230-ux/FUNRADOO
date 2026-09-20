@@ -1,0 +1,483 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-cream: #FAF7F2;
+  --color-cocoa: #2C1E1A;
+  --color-coral: #E05A47;
+  --color-amber: #F59E0B;
+  --color-mint: #10B981;
+}
+
+@layer base {
+  body {
+    @apply bg-[#FAF7F2] text-[#2C1E1A] font-sans antialiased;
+  }
+}
+
+/* Global scrollbar removal across all elements & pages while preserving full scrollability */
+* {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+html, body {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Glassmorphism utility */
+.glass-nav {
+  background: rgba(139, 21, 39, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Keyframe animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2.5s infinite;
+}
+
+/* Price Pop & Ripple Effects */
+@keyframes pricePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); color: #10B981; }
+  100% { transform: scale(1); }
+}
+
+.price-pop {
+  animation: pricePop 0.5s ease;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+
+/* Global Image Clarity & HD Rendering System */
+img, video {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.img-hd {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: contrast(1.04) brightness(1.02) saturate(1.05);
+}
+
+.img-hd-sharp {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: contrast(1.06) brightness(1.02) saturate(1.06) drop-shadow(0 1px 3px rgba(0,0,0,0.06));
+}
+
+
+@keyframes progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.animate-progress {
+  animation: progress linear forwards;
+}
+
+/* Rich English & Pastel Color Cycle Gradient Animation */
+@keyframes englishPastelShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-english-pastel-mesh {
+  background: linear-gradient(
+    135deg,
+    #FFD1DC 0%,    /* Blush Pink */
+    #E9D5FF 12%,   /* Pastel Purple */
+    #B2FBA5 25%,   /* Mint */
+    #FDE68A 37%,   /* Champagne / Pastel Yellow */
+    #B76E79 50%,   /* Rose Gold */
+    #BAE6FD 62%,   /* Powder Blue / Denim */
+    #FFB347 75%,   /* Pastel Orange / Copper */
+    #A3B18A 87%,   /* Olive / Sage */
+    #FFC0CB 100%   /* Pastel Pink */
+  );
+  background-size: 300% 300%;
+  animation: englishPastelShift 14s ease infinite;
+}
+
+/* Shimmer Sweep Effect */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-20deg);
+  }
+}
+
+.animate-shimmer-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+
+/* Floating Orbs & Soft Breathing Glow */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) rotate(4deg) scale(1.04);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(12px) rotate(-4deg) scale(0.96);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 25px rgba(183, 110, 121, 0.3), 0 0 50px rgba(152, 255, 152, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 45px rgba(114, 47, 55, 0.5), 0 0 70px rgba(184, 115, 51, 0.35);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 7s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   FlipText 3D Keyframes & Animation System
+   ========================================================================== */
+
+.flip-text-wrapper {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.flip-char {
+  display: inline-block;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  animation: flip3DAnim var(--flip-duration, 5.5s) cubic-bezier(0.4, 0.0, 0.2, 1) var(--flip-delay, 0s) var(--flip-iteration, infinite);
+  will-change: transform, opacity;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.flip-char:hover {
+  transform: scale(1.18) translateZ(25px) rotateY(12deg) !important;
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.7));
+  z-index: 30;
+}
+
+@keyframes flip3DAnim {
+  0%, 70% {
+    transform: rotateX(0deg) translateZ(0);
+    opacity: 1;
+    filter: drop-shadow(0 0 0px transparent);
+  }
+  78% {
+    transform: rotateX(-90deg) translateZ(18px);
+    opacity: 0.45;
+  }
+  86% {
+    transform: rotateX(-270deg) translateZ(18px);
+    opacity: 0.65;
+  }
+  94%, 100% {
+    transform: rotateX(-360deg) translateZ(0);
+    opacity: 1;
+    filter: drop-shadow(0 0 0px transparent);
+  }
+}
+
+
+/* Metallic Gold Gradient for FlipText */
+.flip-gold-gradient {
+  background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Rose Velvet Gradient for FlipText */
+.flip-rose-gradient {
+  background: linear-gradient(135deg, #FFE4E6 0%, #E11D48 50%, #9F1239 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Electric Cyan Gradient for FlipText */
+.flip-cyan-gradient {
+  background: linear-gradient(135deg, #E0F2FE 0%, #38BDF8 50%, #0284C7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Emerald Luxury Gradient for FlipText */
+.flip-emerald-gradient {
+  background: linear-gradient(135deg, #D1FAE5 0%, #10B981 50%, #047857 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Continuous Marquee Left Animation */
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 30s linear infinite;
+}
+
+.animate-marquee-left:hover {
+  animation-play-state: paused;
+}
+
+/* Stacked 3D Card Layers (Matching the screenshot design) */
+.stacked-card-wrapper {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stacked-card-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -6px -6px 6px 6px;
+  background: var(--stack-color-1, rgba(147, 197, 253, 0.45));
+  border-radius: 1.5rem;
+  z-index: 1;
+  transform: rotate(-1.5deg);
+  transition: transform 0.3s ease;
+}
+
+.stacked-card-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: -10px -10px 10px 10px;
+  background: var(--stack-color-2, rgba(221, 214, 254, 0.35));
+  border-radius: 1.5rem;
+  z-index: 0;
+  transform: rotate(2deg);
+  transition: transform 0.3s ease;
+}
+
+.stacked-card-wrapper:hover::before {
+  transform: rotate(-3deg) scale(1.02);
+}
+
+.stacked-card-wrapper:hover::after {
+  transform: rotate(3.5deg) scale(1.04);
+}
+
+/* Floating Glass & 3D Depth Utilities */
+.floating-section {
+  position: relative;
+  z-index: 10;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-card-elevated {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 20px 50px -12px rgba(44, 30, 26, 0.08), 
+    0 8px 24px -6px rgba(224, 90, 71, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  border-radius: 2rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-card-elevated:hover {
+  transform: translateY(-4px) scale(1.002);
+  box-shadow: 
+    0 30px 60px -15px rgba(44, 30, 26, 0.12), 
+    0 12px 32px -6px rgba(224, 90, 71, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 6s ease-in-out infinite;
+}
+
+/* Print optimization for Official Tax Invoice PDF Download */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  .printable-invoice, .printable-invoice * {
+    visibility: visible !important;
+  }
+  .printable-invoice {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    background: #ffffff !important;
+    color: #1c1917 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
